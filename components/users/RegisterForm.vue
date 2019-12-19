@@ -146,6 +146,7 @@
 <script>
 const MUST_BE_FILLED = "Необходимо заполнить поле"
 const INVALID_VALUE = "Неверное значение поля"
+const PASSWORDS_NOT_MATCH = "Пароли не совпадают"
 
 export default {
     name: 'RegisterForm',
@@ -204,6 +205,14 @@ export default {
             if (this.userdata.username === '') {
                 this.errors.username = MUST_BE_FILLED
                 this.hasError = true
+                return
+            }
+
+            const pattern = /^[a-z0-9][a-z0-9-_]+[a-z0-9]$/
+            if (!pattern.test(this.userdata.username)) {
+                this.errors.username = INVALID_VALUE
+                this.hasError = true
+                return
             }
         },
         validateEmail () {
@@ -212,6 +221,14 @@ export default {
             if (this.userdata.email === '') {
                 this.errors.email = MUST_BE_FILLED
                 this.hasError = true
+                return
+            }
+
+            const pattern = /^[a-z0-9][a-z0-9-_]+[a-z0-9]$/
+            if (!pattern.test(this.userdata.email)) {
+                this.errors.email = INVALID_VALUE
+                this.hasError = true
+                return
             }
         },
         validateFirstName () {
@@ -220,6 +237,14 @@ export default {
             if (this.userdata.firstName === '') {
                 this.errors.firstName = MUST_BE_FILLED
                 this.hasError = true
+                return
+            }
+
+            const pattern = /^[а-яА-ЯёЁa-zA-Z0-9]+$/
+            if (!pattern.test(this.userdata.firstName)) {
+                this.errors.firstName = INVALID_VALUE
+                this.hasError = true
+                return
             }
         },
         validateSecondName () {
@@ -228,6 +253,14 @@ export default {
             if (this.userdata.secondName === '') {
                 this.errors.secondName = MUST_BE_FILLED
                 this.hasError = true
+                return
+            }
+
+            const pattern = /^[а-яА-ЯёЁa-zA-Z0-9]+$/
+            if (!pattern.test(this.userdata.secondName)) {
+                this.errors.secondName = INVALID_VALUE
+                this.hasError = true
+                return
             }
         },
         validatePhone () {
@@ -236,6 +269,14 @@ export default {
             if (this.userdata.phone === '') {
                 this.errors.phone = MUST_BE_FILLED
                 this.hasError = true
+                return
+            }
+
+            const pattern = /^(\+)\d{13,14}$/
+            if (!pattern.test(this.userdata.phone)) {
+                this.errors.phone = INVALID_VALUE
+                this.hasError = true
+                return
             }
         },
         validateCountry () {
@@ -244,6 +285,14 @@ export default {
             if (this.userdata.country === '') {
                 this.errors.country = MUST_BE_FILLED
                 this.hasError = true
+                return
+            }
+
+            const pattern = /^[a-z]{2}$/
+            if (!pattern.test(this.userdata.country)) {
+                this.errors.country = INVALID_VALUE
+                this.hasError = true
+                return
             }
         },
         validatePassword () {
@@ -252,6 +301,7 @@ export default {
             if (this.userdata.password === '') {
                 this.errors.password = MUST_BE_FILLED
                 this.hasError = true
+                return
             }
         },
         validatePasswordRepeat () {
@@ -260,6 +310,13 @@ export default {
             if (this.userdata.passwordRepeat === '') {
                 this.errors.passwordRepeat = MUST_BE_FILLED
                 this.hasError = true
+                return
+            }
+
+            if (this.userdata.password !== this.userdata.passwordRepeat) {
+                this.errors.passwordRepeat = PASSWORDS_NOT_MATCH
+                this.hasError = true
+                return
             }
         },
         validateFinPassword () {
@@ -268,14 +325,19 @@ export default {
             if (this.userdata.finPassword === '') {
                 this.errors.finPassword = MUST_BE_FILLED
                 this.hasError = true
+                return
             }
         },
         validateSkype () {
             this.errors.skype = ''
 
-            if (this.userdata.skype === '') {
-                this.errors.skype = MUST_BE_FILLED
-                this.hasError = true
+            if (this.userdata.skype !== '') {
+                const pattern = /^[a-z0-9-_]+$/
+                if (!pattern.test(this.userdata.skype)) {
+                    this.errors.skype = INVALID_VALUE
+                    this.hasError = true
+                    return
+                }
             }
         }
     },
