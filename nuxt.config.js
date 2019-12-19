@@ -1,5 +1,12 @@
 module.exports = {
   /*
+  ** Host and port
+  */
+  server: {
+    port: 80,
+    host: '0.0.0.0'
+  },
+  /*
   ** Headers of the page
   */
   head: {
@@ -34,6 +41,7 @@ module.exports = {
         })
       }
     }
-  }
+  },
+  modules: ['bootstrap-vue/nuxt']
 }
 
