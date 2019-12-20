@@ -139,6 +139,8 @@
         >
             Добавить
         </button>
+        <hr />
+        Response: <pre>{{ serverResponse }}</pre>
     </form>
 </div>
 </template>
@@ -147,6 +149,8 @@
 const MUST_BE_FILLED = "Необходимо заполнить поле"
 const INVALID_VALUE = "Неверное значение поля"
 const PASSWORDS_NOT_MATCH = "Пароли не совпадают"
+
+import axios from 'axios'
 
 export default {
     name: 'RegisterForm',
@@ -176,12 +180,17 @@ export default {
                 finPassword: '',
                 skype: ''
             },
-            hasError: true
+            hasError: true,
+            serverResponse: ''
         }
     },
     methods: {
-        onSubmit () {
+        async onSubmit () {
             if (!this.validateForm()) return
+
+            this.serverResponse = ''
+
+            this.serverResponse = await axios.post('http://localhost:3000/user/register', this.userdata)
         },
         validateForm () {
             this.hasError = false

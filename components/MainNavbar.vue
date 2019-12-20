@@ -1,7 +1,7 @@
 <template>
   <div class="main-navbar">
     <router-link to="/auth/login" class="btn btn-outline-secondary btn-sm">Войти</router-link>
-    <router-link to="/auth/register" class="btn btn-info btn-sm">Регистрация</router-link>
+    <router-link to="/user/register" class="btn btn-info btn-sm">Регистрация</router-link>
   </div>
 </template>
 
