@@ -42,6 +42,35 @@ module.exports = {
       }
     }
   },
-  modules: ['bootstrap-vue/nuxt']
+  modules: [
+    'bootstrap-vue/nuxt',
+    '@nuxtjs/axios',
+    '@nuxtjs/auth'
+  ],
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: '/auth/login',
+            method: 'post',
+            propertyName: 'token'
+          },
+          logout: { 
+            url: '/auth/logout', 
+            method: 'post' 
+          },
+          user: { 
+            url: '/user/account', 
+            method: 'get', 
+            propertyName: false
+          }
+        }
+      }
+    }
+  },
+  axios: {
+    baseURL: 'http://192.168.0.41:3000',
+    credentials: false
+  },
 }
-

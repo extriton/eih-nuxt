@@ -1,10 +1,14 @@
 <template>
-    <h2>Авторизация</h2>
+    <login-form/>
 </template>
 
 <script>
-export default {}
-</script>
+import LoginForm from '~/components/auth/LoginForm.vue'
 
-<style>
-</style>
+export default {
+    name: 'LoginPage',
+    components: {
+        LoginForm
+    }
+}
+</script>

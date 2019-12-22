@@ -6,11 +6,9 @@
 import RegisterForm from '~/components/user/RegisterForm.vue'
 
 export default {
+    name: 'RegisterPage',
     components: {
         RegisterForm
     }
 }
 </script>
-
-<style>
-</style>

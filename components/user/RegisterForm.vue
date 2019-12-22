@@ -1,7 +1,7 @@
 <template>
-<div class="login-form">
-    <h3 class="login-form__title">Регистрация</h3>
-    <form action="#" class="login-form__body" @submit.prevent="onSubmit">
+<div class="register-form">
+    <h3 class="register-form__title">Регистрация</h3>
+    <form action="#" class="register-form__body" @submit.prevent="onSubmit">
         <!-- Username -->
         <div class="form-group">
             <div class="input-group-prepend">
@@ -137,7 +137,7 @@
             type="submit"
             class="btn btn-primary"
         >
-            Добавить
+            Зарегистрироваться
         </button>
         <hr />
         Response: <pre>{{ serverResponse }}</pre>
@@ -190,7 +190,7 @@ export default {
 
             this.serverResponse = ''
 
-            this.serverResponse = await axios.post('http://localhost:3000/user/register', this.userdata)
+            this.serverResponse = await axios.post('/user/register', this.userdata)
         },
         validateForm () {
             this.hasError = false
@@ -297,6 +297,7 @@ export default {
                 return
             }
 
+            this.userdata.country = this.userdata.country.toLowerCase()
             const pattern = /^[a-z]{2}$/
             if (!pattern.test(this.userdata.country)) {
                 this.errors.country = INVALID_VALUE
@@ -354,7 +355,7 @@ export default {
 </script>
 
 <style lang="scss">
-.login-form {
+.register-form {
     width: 40%;
     padding: 0 30px 20px 30px;
     border: 1px solid #d5dddf;
