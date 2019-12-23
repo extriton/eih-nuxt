@@ -139,8 +139,9 @@
         >
             Зарегистрироваться
         </button>
-        <hr />
-        Response: <pre>{{ serverResponse }}</pre>
+         или 
+        <router-link to="/auth/login" class="btn btn-outline-secondary btn-sm">Войти</router-link>
+        <p v-show="registerError" class="error">{{ registerError }}</p>
     </form>
 </div>
 </template>
@@ -149,6 +150,7 @@
 const MUST_BE_FILLED = "Необходимо заполнить поле"
 const INVALID_VALUE = "Неверное значение поля"
 const PASSWORDS_NOT_MATCH = "Пароли не совпадают"
+const REGISTER_ERROR = "Ошибка регистрации"
 
 import axios from 'axios'
 
@@ -181,16 +183,27 @@ export default {
                 skype: ''
             },
             hasError: true,
-            serverResponse: ''
+            registerError: ''
         }
     },
     methods: {
         async onSubmit () {
             if (!this.validateForm()) return
 
-            this.serverResponse = ''
-
-            this.serverResponse = await axios.post('/user/register', this.userdata)
+            this.registerError = ''
+            
+            // Register user
+            try {
+                console.log('call post /user/register')
+                const result = await axios.post('http://localhost:3000/user/register', this.userdata)
+            } catch (e) {
+                this.registerError = REGISTER_ERROR
+                this.$router.push({ path: '/user/register' })
+                return
+            }
+            
+            this.$router.push({ path: '/auth/login' })
+            
         },
         validateForm () {
             this.hasError = false

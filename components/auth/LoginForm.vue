@@ -34,6 +34,8 @@
         >
             Войти
         </button>
+         или 
+        <router-link to="/user/register" class="btn btn-outline-secondary btn-sm">Зарегистрироваться</router-link>
         <p v-show="loginError" class="error">{{ loginError }}</p>
     </form>
 </div>
@@ -74,7 +76,6 @@ export default {
             }
             try {
                 await this.$auth.loginWith('local', { data: credentials })
-                this.$router.push({ path: '/user/account/' })
             } catch (e) {
                 this.loginError = INVALID_USERNAME
                 this.$router.push({ path: '/auth/login' })
