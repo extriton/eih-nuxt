@@ -4,5 +4,6 @@ export default {
     INVALID_USERNAME: "Неверное имя пользователя или пароль",
     PASSWORDS_NOT_MATCH: "Пароли не совпадают",
     REGISTER_ERROR: "Ошибка регистрации",
-    USER_SAVE_ERROR: "Ошибка при изменении данных пользователя"
+    USER_SAVE_ERROR: "Ошибка при изменении данных пользователя",
+    USER_CHANGE_PASSWORD_ERROR: "Ошибка при смене пароля"
 }

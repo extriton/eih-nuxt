@@ -12,6 +12,7 @@
         <button
             type="button"
             class="btn btn-outline-info"
+            @click="changePassword"
         >
             Изменить пароль
         </button>
@@ -36,6 +37,9 @@ export default {
         async logout () {
             await this.$auth.logout()
             this.$router.push('/auth/login')
+        },
+        changePassword () {
+            this.$router.push('/user/change-password')
         }
     }
 }
