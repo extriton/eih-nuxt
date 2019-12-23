@@ -42,9 +42,7 @@
 </template>
 
 <script>
-const MUST_BE_FILLED = "Необходимо заполнить поле"
-const INVALID_VALUE = "Неверное значение поля"
-const INVALID_USERNAME = "Неверное имя пользователя или пароль"
+import errors from '~/utils/errors'
 
 export default {
     name: 'LoginForm',
@@ -77,7 +75,7 @@ export default {
             try {
                 await this.$auth.loginWith('local', { data: credentials })
             } catch (e) {
-                this.loginError = INVALID_USERNAME
+                this.loginError = errors.INVALID_USERNAME
                 this.$router.push({ path: '/auth/login' })
             }
         },
@@ -93,14 +91,14 @@ export default {
             this.errors.username = ''
 
             if (this.userdata.username === '') {
-                this.errors.username = MUST_BE_FILLED
+                this.errors.username = errors.MUST_BE_FILLED
                 this.hasError = true
                 return
             }
 
             const pattern = /^[a-z0-9][a-z0-9-_]+[a-z0-9]$/
             if (!pattern.test(this.userdata.username)) {
-                this.errors.username = INVALID_VALUE
+                this.errors.username = errors.INVALID_VALUE
                 this.hasError = true
                 return
             }
@@ -109,7 +107,7 @@ export default {
             this.errors.password = ''
 
             if (this.userdata.password === '') {
-                this.errors.password = MUST_BE_FILLED
+                this.errors.password = errors.MUST_BE_FILLED
                 this.hasError = true
                 return
             }

@@ -147,10 +147,7 @@
 </template>
 
 <script>
-const MUST_BE_FILLED = "Необходимо заполнить поле"
-const INVALID_VALUE = "Неверное значение поля"
-const PASSWORDS_NOT_MATCH = "Пароли не совпадают"
-const REGISTER_ERROR = "Ошибка регистрации"
+import errors from '~/utils/errors'
 
 import axios from 'axios'
 
@@ -192,9 +189,7 @@ export default {
 
             this.registerError = ''
             
-            // Register user
             try {
-                console.log('call post /user/register')
                 const result = await axios.post('http://localhost:3000/user/register', this.userdata)
             } catch (e) {
                 this.registerError = REGISTER_ERROR
@@ -225,14 +220,14 @@ export default {
             this.errors.username = ''
 
             if (this.userdata.username === '') {
-                this.errors.username = MUST_BE_FILLED
+                this.errors.username = errors.MUST_BE_FILLED
                 this.hasError = true
                 return
             }
 
             const pattern = /^[a-z0-9][a-z0-9-_]+[a-z0-9]$/
             if (!pattern.test(this.userdata.username)) {
-                this.errors.username = INVALID_VALUE
+                this.errors.username = errors.INVALID_VALUE
                 this.hasError = true
                 return
             }
@@ -241,14 +236,14 @@ export default {
             this.errors.email = ''
 
             if (this.userdata.email === '') {
-                this.errors.email = MUST_BE_FILLED
+                this.errors.email = errors.MUST_BE_FILLED
                 this.hasError = true
                 return
             }
 
             const pattern = /^[a-z0-9][a-z0-9-_]+[a-z0-9]$/
             if (!pattern.test(this.userdata.email)) {
-                this.errors.email = INVALID_VALUE
+                this.errors.email = errors.INVALID_VALUE
                 this.hasError = true
                 return
             }
@@ -257,14 +252,14 @@ export default {
             this.errors.firstName = ''
 
             if (this.userdata.firstName === '') {
-                this.errors.firstName = MUST_BE_FILLED
+                this.errors.firstName = errors.MUST_BE_FILLED
                 this.hasError = true
                 return
             }
 
             const pattern = /^[а-яА-ЯёЁa-zA-Z0-9]+$/
             if (!pattern.test(this.userdata.firstName)) {
-                this.errors.firstName = INVALID_VALUE
+                this.errors.firstName = errors.INVALID_VALUE
                 this.hasError = true
                 return
             }
@@ -273,14 +268,14 @@ export default {
             this.errors.secondName = ''
 
             if (this.userdata.secondName === '') {
-                this.errors.secondName = MUST_BE_FILLED
+                this.errors.secondName = errors.MUST_BE_FILLED
                 this.hasError = true
                 return
             }
 
             const pattern = /^[а-яА-ЯёЁa-zA-Z0-9]+$/
             if (!pattern.test(this.userdata.secondName)) {
-                this.errors.secondName = INVALID_VALUE
+                this.errors.secondName = errors.INVALID_VALUE
                 this.hasError = true
                 return
             }
@@ -289,14 +284,14 @@ export default {
             this.errors.phone = ''
 
             if (this.userdata.phone === '') {
-                this.errors.phone = MUST_BE_FILLED
+                this.errors.phone = errors.MUST_BE_FILLED
                 this.hasError = true
                 return
             }
 
             const pattern = /^(\+)\d{13,14}$/
             if (!pattern.test(this.userdata.phone)) {
-                this.errors.phone = INVALID_VALUE
+                this.errors.phone = errors.INVALID_VALUE
                 this.hasError = true
                 return
             }
@@ -305,7 +300,7 @@ export default {
             this.errors.country = ''
 
             if (this.userdata.country === '') {
-                this.errors.country = MUST_BE_FILLED
+                this.errors.country = errors.MUST_BE_FILLED
                 this.hasError = true
                 return
             }
@@ -313,7 +308,7 @@ export default {
             this.userdata.country = this.userdata.country.toLowerCase()
             const pattern = /^[a-z]{2}$/
             if (!pattern.test(this.userdata.country)) {
-                this.errors.country = INVALID_VALUE
+                this.errors.country = errors.INVALID_VALUE
                 this.hasError = true
                 return
             }
@@ -322,7 +317,7 @@ export default {
             this.errors.password = ''
 
             if (this.userdata.password === '') {
-                this.errors.password = MUST_BE_FILLED
+                this.errors.password = errors.MUST_BE_FILLED
                 this.hasError = true
                 return
             }
@@ -331,13 +326,13 @@ export default {
             this.errors.passwordRepeat = ''
 
             if (this.userdata.passwordRepeat === '') {
-                this.errors.passwordRepeat = MUST_BE_FILLED
+                this.errors.passwordRepeat = errors.MUST_BE_FILLED
                 this.hasError = true
                 return
             }
 
             if (this.userdata.password !== this.userdata.passwordRepeat) {
-                this.errors.passwordRepeat = PASSWORDS_NOT_MATCH
+                this.errors.passwordRepeat = errors.PASSWORDS_NOT_MATCH
                 this.hasError = true
                 return
             }
@@ -346,7 +341,7 @@ export default {
             this.errors.finPassword = ''
 
             if (this.userdata.finPassword === '') {
-                this.errors.finPassword = MUST_BE_FILLED
+                this.errors.finPassword = errors.MUST_BE_FILLED
                 this.hasError = true
                 return
             }
@@ -357,7 +352,7 @@ export default {
             if (this.userdata.skype !== '') {
                 const pattern = /^[a-z0-9-_]+$/
                 if (!pattern.test(this.userdata.skype)) {
-                    this.errors.skype = INVALID_VALUE
+                    this.errors.skype = errors.INVALID_VALUE
                     this.hasError = true
                     return
                 }
