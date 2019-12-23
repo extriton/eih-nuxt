@@ -69,6 +69,11 @@ module.exports = {
             url: '/user/account', 
             method: 'get', 
             propertyName: false
+          },
+          change: {
+            url: '/user/change', 
+            method: 'put', 
+            propertyName: false
           }
         }
       }

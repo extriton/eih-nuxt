@@ -148,7 +148,6 @@
 
 <script>
 import errors from '~/utils/errors'
-
 import axios from 'axios'
 
 export default {
@@ -192,7 +191,7 @@ export default {
             try {
                 const result = await axios.post('http://localhost:3000/user/register', this.userdata)
             } catch (e) {
-                this.registerError = REGISTER_ERROR
+                this.registerError = errors.REGISTER_ERROR
                 this.$router.push({ path: '/user/register' })
                 return
             }
